@@ -1,7 +1,3 @@
-.body {
-  background-color: #e6410e
-}
-
 .display-3 {
   font-family: 'Amatic SC', cursive;
   font-weight: 400;
@@ -22,7 +18,7 @@
 }
 
 .title-logo {
-  width: 50px;
+  width: 60px;
 }
 
 .cat-index-wrapper {
@@ -51,4 +47,25 @@
 
 .cat-wrapper {
   padding: 0 40px 40px 40px;
+}
+
+.form-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  width: 80%;
+}
+
+.jumbotron.jumbotron-fluid {
+  padding: 10px 0px;
+}
+
+@media only screen and (min-width: 600px) {
+  .form-group {
+    width: 480px;
+  }
 }

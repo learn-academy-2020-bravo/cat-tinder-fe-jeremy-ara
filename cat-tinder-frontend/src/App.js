@@ -8,7 +8,7 @@ import NewCat from './pages/NewCat'
 import catsArray from './cats'
 
 const App = props => {
-  const [cats, setAllCats] = useState(catsArray)
+  const [cats, setCats] = useState(catsArray)
 
   return(
     <Router>

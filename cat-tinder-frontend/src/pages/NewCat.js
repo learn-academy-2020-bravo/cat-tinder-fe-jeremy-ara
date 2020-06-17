@@ -26,12 +26,13 @@ const NewCat = props => {
       age: '',
       enjoys: ''
     })
+    console.log(form)
   }
 
   return(
     <>
-      <Link to="/">Back to Home</Link>
-      <Form>
+      <a className="link" href="/">Back to Home</a>
+      <Form className="form-wrapper">
         <FormGroup>
           <Label htmlFor="name" id="name">Name</Label>
             <Input
@@ -47,7 +48,7 @@ const NewCat = props => {
               value={ form.age }
               onChange={ handleChange }
             />
-          <Label htmlFor="enjoys" id="name">What Do You Enjoy?</Label>
+          <Label htmlFor="enjoys" id="enjoys">Enjoys</Label>
             <Input
               type="text"
               name="enjoys"
@@ -56,8 +57,10 @@ const NewCat = props => {
             />
         </FormGroup>
         <Button
+          style={{backgroundColor: "#e6410e", border:"0px", fontWeight: "bold"}}
           onClick = { handleSubmit }
-        >Create Profile</Button>
+          id="submit"
+        >Add New Cat</Button>
       </Form>
     </>
   )
