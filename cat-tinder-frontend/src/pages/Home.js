@@ -6,7 +6,7 @@ const Home = props => {
   return(
     <>
       <Link to="/new">Create Cat Profile</Link><br/><br/>
-      <Link to="/cats">See All Single Cats In Your Area</Link>
+      <Link to="/cats">See All Single Cats</Link>
     </>
   )
 }

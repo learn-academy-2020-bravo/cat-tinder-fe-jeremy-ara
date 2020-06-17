@@ -1,5 +1,6 @@
 import React from 'react'
 import { Jumbotron, Container } from 'reactstrap'
+import Logo from '../images/cat-tinder-logo.png'
 import '../App.css'
 
 const Header = props => {
@@ -7,9 +8,9 @@ const Header = props => {
     <>
       <div>
         <Jumbotron fluid>
-          <Container fluid>
-            <h1 className="display-3">Cat Meowtch</h1>
-            <p className="lead">Claw left or right to meowtch with your purrfect lover</p>
+          <Container fluid className="container-wrapper">
+            <div className="title-wrapper"><img className="title-logo" src={Logo} /><h1 className="display-3">Meowtch Maker</h1></div>
+            <p className="lead">Meowtch up with your purrfect love.</p>
           </Container>
         </Jumbotron>
       </div>

@@ -1,4 +1,6 @@
 import Hongcha from './images/hongcha.jpg'
+import Hongcha2 from './images/hongcha2.PNG'
+import FatCat from './images/fat-cat.jpg'
 
 const cats = [
   {
@@ -10,14 +12,14 @@ const cats = [
   },
   {
     id: 2,
-    image: "",
+    image: Hongcha2,
     name: 'Paws',
     age: 4,
     enjoys: "Snuggling by the fire."
   },
   {
     id: 3,
-    image: "",
+    image: FatCat,
     name: 'Mr. Meowsalot',
     age: 12,
     enjoys: "Being in charge."

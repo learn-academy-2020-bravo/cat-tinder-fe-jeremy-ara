@@ -6,18 +6,23 @@ import '../App.css'
 const CatIndex = props => {
   return(
     <>
-      <Link to="/">Back to Home</Link>
-      <h3>All the single cats in your area</h3><br/>
-      {props.cats.map((cat,index) => {
-        return(
-          <ListGroup key={index}>
-            <h4>{ cat.name } </h4>
-            <img style={{width: "300px"}} src={cat.image} />
-            <ListGroupItemText>{ cat.age }</ListGroupItemText>
-            <ListGroupItemText>{ cat.enjoys } </ListGroupItemText>
-          </ListGroup>
-        )
-      })}
+      <Link className="link" to="/">Back to Home</Link>
+      <div className="cat-index-wrapper">
+        <h3>All the single cats in your area</h3><br/>
+        <div className="cats-display-wrapper">
+        {props.cats.map((cat,index) => {
+          return(
+            <ListGroup key={index} className="cat-wrapper">
+              <img style={{width: "300px"}} src={cat.image} />
+              <div className="cat-description-wrapper">
+                <h4 className="cat-name"><span style={{fontWeight: "bold"}}>{ cat.name }</span>, { cat.age }</h4>
+                <ListGroupItemText>{ cat.enjoys } </ListGroupItemText>
+              </div>
+            </ListGroup>
+          )
+        })}
+        </div>
+      </div>
     </>
   )
 }
