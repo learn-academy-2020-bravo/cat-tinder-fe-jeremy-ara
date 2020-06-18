@@ -18,7 +18,7 @@ const Home = props => {
           if (cat.id === 1) {
             return(
               <ListGroup key={index} className="cat-wrapper-spotlight">
-              <a href={`/${cat.id}`}><img style={{width: "300px"}} src={cat.image} /></a>
+              <a href={`/${cat.id}`}><img style={{width: "300px"}} src={cat.image_path} /></a>
               <div className="cat-description-wrapper">
               <h4 className="cat-name"><span style={{fontWeight: "bold"}}>{ cat.name }</span>, <span style={{fontWeight:"300"}}>{ cat.age }</span></h4>
               <ListGroupItemText>{ cat.enjoys } </ListGroupItemText>
