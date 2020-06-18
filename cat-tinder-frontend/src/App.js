@@ -43,14 +43,14 @@ const App = props => {
         {
           newCats.map((cat,index) => {
             return(
-              <Route exact path={`/${cat.id}`} render={(props) => <CatProfile name={cat.name} enjoys={cat.enjoys} age={cat.age} image={cat.image} index={cat.index} id={cat.id}/> } />
+              <Route exact path={`/${cat.id}`} render={(props) => <CatProfile name={cat.name} enjoys={cat.enjoys} age={cat.age} image={cat.image_path} index={cat.index} id={cat.id}/> } />
             )
           })
         }
         {
           newCats.map((cat,index) => {
             return(
-              <Route path={`/${cat.id}/edit`} render={(props) => <UpdateCat name={cat.name} enjoys={cat.enjoys} age={cat.age} image={cat.image} index={cat.index} id={cat.id}/> } />
+              <Route path={`/${cat.id}/edit`} render={(props) => <UpdateCat name={cat.name} enjoys={cat.enjoys} age={cat.age} image={cat.image_path} index={cat.index} id={cat.id}/> } />
             )
           })
         }
