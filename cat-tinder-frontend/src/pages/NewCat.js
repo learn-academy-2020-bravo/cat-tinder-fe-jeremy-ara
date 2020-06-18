@@ -6,7 +6,8 @@ const NewCat = props => {
   const [form, setForm] = useState({
       name: '',
       age: '',
-      enjoys: ''
+      enjoys: '',
+      avatar: ''
   })
 
   const handleChange = e => {
@@ -23,7 +24,8 @@ const NewCat = props => {
     setForm({
       name: '',
       age: '',
-      enjoys: ''
+      enjoys: '',
+      avatar: ''
     })
     console.log(form)
   }
@@ -60,6 +62,22 @@ const NewCat = props => {
               onChange={ handleChange }
             />
         </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="avatar">Photo</Label>
+          <Input
+            id="avatar"
+            type="file"
+            name="avatar"
+            accept="image/png, image/jpeg"
+            value= { form.avatar }
+            onChange={ handleChange }
+          />
+          <FormText color="muted">
+            Add a photo of your hottie face!
+          </FormText>
+        </FormGroup>
+
         <Button
           style={{backgroundColor:"white",border:"1px solid rgb(237,53,53)", color:"rgb(237,53,53)",fontWeight: "500", marginBottom: "80px"}}
           onClick = { handleSubmit }

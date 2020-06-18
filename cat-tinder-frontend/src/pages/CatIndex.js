@@ -3,6 +3,30 @@ import { ListGroup, ListGroupItemHeading, ListGroupItemText, Button } from 'reac
 import '../App.css'
 
 const CatIndex = props => {
+    //Create an empty array to hold all the cats
+  const [newCats, setNewCats] = useState([])
+  //useEffect hook lets us GET all cats from the database when the component loads
+  //the empty array after the comma means that it will get triggered automatically only once
+  useEffect(() =>{
+    grabCats()},[])
+
+  async function grabCats () {
+    try {
+      //GET data from the backend
+      let response = await fetch("http://localhost:3000/cats")
+      let data = await response.json();
+      //all good?
+      if(response.status === 200) {
+        //check the console to make sure we have all the cats
+        console.log("data", data)
+        //populate the newCats state array with data
+        setNewCats(data)
+      }
+    } catch (err) {
+        console.log(err)
+    }
+  }
+
   return(
     <>
       <div className="header-buttons">
@@ -14,13 +38,13 @@ const CatIndex = props => {
         <h3>All the single cats in your area</h3><br/>
         <div className="cats-display-wrapper">
 
-        {props.cats.map((cat,index) => {
+        {newCats.map((cat,index) => {
           return(
             <ListGroup key={index} className="cat-wrapper">
-              <a href={`/${cat.id}`}><img style={{width: "300px"}} src={cat.image} /></a>
+              <a href={`/${newCats.id}`}><img style={{width: "300px"}} src={newCats.image} /></a>
               <div className="cat-description-wrapper">
-                <h4 className="cat-name"><span style={{fontWeight: "bold"}}>{ cat.name }</span>, <span style={{fontWeight:"300"}}>{ cat.age }</span></h4>
-                <ListGroupItemText>{ cat.enjoys } </ListGroupItemText>
+                <h4 className="cat-name"><span style={{fontWeight: "bold"}}>{ newCats.name }</span>, <span style={{fontWeight:"300"}}>{ newCats.age }</span></h4>
+                <ListGroupItemText>{ newCats.enjoys } </ListGroupItemText>
               </div>
 
               <div className="like-buttons-wrapper">

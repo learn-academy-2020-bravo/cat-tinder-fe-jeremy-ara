@@ -7,7 +7,8 @@ const UpdateCat = props => {
   const [form, setForm] = useState({
       name: props.name,
       age: props.age,
-      enjoys: props.enjoys
+      enjoys: props.enjoys,
+      avatar: ''
   })
 
   const handleChange = e => {
@@ -56,6 +57,20 @@ const UpdateCat = props => {
               onChange={ handleChange }
             />
         </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="avatar" id="avatar">Photo</Label>
+          <Input
+            type="file"
+            name="avatar"
+            value= { form.avatar }
+            onChange={ handleChange }
+          />
+          <FormText color="muted">
+            Add a photo of your hottie face!
+          </FormText>
+        </FormGroup>
+
         <Button
           style={{backgroundColor:"white",border:"1px solid rgb(237,53,53)", color:"rgb(237,53,53)",fontWeight: "500", marginBottom: "80px"}}
           onClick = { handleSubmit }
