@@ -1,4 +1,4 @@
-.display-3 {
+.app-title {
   font-family: 'Amatic SC', cursive;
   font-weight: 400;
 }
@@ -10,15 +10,10 @@
   justify-content: center;
 }
 
-.container-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .title-logo {
   width: 60px;
+  margin-right: 10px;
+  margin-top: -25px;
 }
 
 .cat-index-wrapper {
@@ -37,6 +32,7 @@
   padding: 10px;
   /* border: 0.5px solid #d3c0bf; */
   background-color: #F8F8F8;
+  width: 100%;
 }
 
 .cats-display-wrapper {
@@ -61,18 +57,18 @@
   width: 80%;
 }
 
-.jumbotron.jumbotron-fluid {
-  padding: 10px 0px;
-  background-color: white;
-  margin: 0px;
-}
-
-.jumbotron {
+.header-container {
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 30px 0 30px;
 }
+
+.header-subtitle {
+  font-size: 20px;
+  font-weight: 300;
+}
+
 
 .lead {
   text-align: center;
@@ -85,6 +81,10 @@
   margin-bottom: 50px;
 }
 
+.cat-profile-wrapper.list-group {
+  margin: 50px 0px 50px 0px;
+}
+
 .cat-wrapper-spotlight.list-group {
   padding: 0px;
   margin: 20px 0px;
@@ -94,16 +94,15 @@ footer {
   font-size: 12px;
   padding: 10px;
   text-align: center;
-  /* position: absolute;
-  bottom: 0;
-  width: 100%; */
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 
 .header-buttons {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom:
 }
 .subtitle {
   text-align: center;
@@ -116,6 +115,63 @@ footer {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.cat-wrapper-profile.list-group {
+  padding: 0px;
+  margin: 20px 0px;
+}
+
+.cat-profile-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quote {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-jumbotron {
+  background: rgb(237,53,53);
+  background: linear-gradient(90deg, rgba(237,53,53,1) 0%, rgba(255,96,47,1) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 50px;
+  margin-bottom: 40px;
+  width: 100%;
+  color: white;
+}
+
+.home-title {
+  text-align: center;
+  font-size: 40px;
+}
+
+.home-subtitle {
+  font-size: 22px;
+  font-weight: 300;
+}
+
+.form-control {
+  margin-bottom: 5px;
+}
+
+.messages-title {
+  text-align: center;
 }
 
 @media only screen and (min-width: 600px) {

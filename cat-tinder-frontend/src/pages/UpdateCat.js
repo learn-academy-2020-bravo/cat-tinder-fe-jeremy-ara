@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
+import { Link } from 'react-router-dom'
 import '../App.css'
 
-const NewCat = props => {
+const UpdateCat = props => {
   const [form, setForm] = useState({
-      name: '',
-      age: '',
-      enjoys: ''
+      name: props.name,
+      age: props.age,
+      enjoys: props.enjoys
   })
 
   const handleChange = e => {
@@ -20,22 +21,17 @@ const NewCat = props => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    setForm({
-      name: '',
-      age: '',
-      enjoys: ''
-    })
     console.log(form)
   }
 
   return(
     <>
       <div className="header-buttons">
-        <a className="link" href="/"><Button style={{background: "rgb(237,53,53)", border:"0px", fontWeight: "500"}}>Back to Home</Button></a>
-        <a className="link" href="/cats"><Button style={{background: "rgb(237,53,53)", border:"0px", fontWeight: "500"}}>See Other Cats</Button></a>
+        <a className="link" href={`/${props.id}`}><Button style={{background: "rgb(237,53,53)", border:"0px", fontWeight: "500"}}>Back to Profile</Button></a>
+        <a className="link" href="/"><Button style={{background: "rgb(237,53,53)", border:"0px", fontWeight: "500"}}>Home</Button></a>
         <a style={{textDecoration:"none"}} href="/messages"><Button style={{backgroundColor: "rgb(237,53,53)", border:"0px", fontWeight: "500", fontSize: "25px", padding: "5px", display:"flex", alignItems: "center", justifyContent: "center", width:"36px", height:"36px", margin:"0 0 0 20px"}}><span role="img" aria-label="message-cat">💌</span></Button></a>
       </div>
-      <h4 className="subtitle">Sign up to be part of the hotties.</h4>
+      <h4 className="subtitle">Edit your profile.</h4>
       <Form className="form-wrapper">
         <FormGroup>
           <Label htmlFor="name" id="name">Name</Label>
@@ -64,10 +60,10 @@ const NewCat = props => {
           style={{backgroundColor:"white",border:"1px solid rgb(237,53,53)", color:"rgb(237,53,53)",fontWeight: "500", marginBottom: "80px"}}
           onClick = { handleSubmit }
           id="submit"
-        >Create Profile</Button>
+        >Update Profile</Button>
       </Form>
     </>
   )
 }
 
-export default NewCat
+export default UpdateCat
