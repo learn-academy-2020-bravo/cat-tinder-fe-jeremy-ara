@@ -31,7 +31,12 @@ const NewCat = props => {
 
   return(
     <>
-      <a className="link" href="/">Back to Home</a>
+      <div className="header-buttons">
+        <a className="link" href="/"><Button style={{backgroundColor: "#e6410e", border:"0px", fontWeight: "bold"}}>Back to Home</Button></a>
+        <a className="link" href="/cats"><Button style={{backgroundColor: "#e6410e", border:"0px", fontWeight: "bold"}}>See Other Cats</Button></a>
+        <Button style={{backgroundColor: "#e6410e", border:"0px", fontWeight: "bold", fontSize: "25px", padding: "5px", display:"flex", alignItems: "center", justifyContent: "center", width:"36px", height:"36px", margin:"0 0 0 20px"}}><span role="img" aria-label="message-cat">💌</span></Button>
+      </div>
+      <h4 className="subtitle">Sign up to be part of the hotties.</h4>
       <Form className="form-wrapper">
         <FormGroup>
           <Label htmlFor="name" id="name">Name</Label>
@@ -57,10 +62,10 @@ const NewCat = props => {
             />
         </FormGroup>
         <Button
-          style={{backgroundColor: "#e6410e", border:"0px", fontWeight: "bold"}}
+          style={{backgroundColor: "#e6410e", border:"0px", fontWeight: "bold", marginBottom: "80px"}}
           onClick = { handleSubmit }
           id="submit"
-        >Add New Cat</Button>
+        >Create Profile</Button>
       </Form>
     </>
   )

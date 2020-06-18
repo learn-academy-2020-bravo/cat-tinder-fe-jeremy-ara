@@ -14,10 +14,11 @@ const App = props => {
     <Router>
       <Header />
       <Switch>
-        <Route exact path="/" render={(props) => <Home /> } />
+        <Route exact path="/" render={(props) => <Home cats={ cats } /> } />
         <Route path="/cats" render={(props) => <CatIndex cats={ cats } /> } />
         <Route path="/new" render={(props) => <NewCat /> } />
       </Switch>
+      <footer>Meowtch Maker by Ara and Jeremy. Meow'd with love.</footer>
     </Router>
   )
 }
