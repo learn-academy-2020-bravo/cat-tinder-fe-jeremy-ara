@@ -12,13 +12,14 @@ const CatProfile = props => {
         "Content-Type": "application/json"
       },
       method: "DELETE"
+    }).then(() => {
+      setSuccess(true)
     })
   }
 
   const handleDelete = e => {
     e.preventDefault()
     deleteCat(props.id)
-    setSuccess(true)
   }
 
   return(

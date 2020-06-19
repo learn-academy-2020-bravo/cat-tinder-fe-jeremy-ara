@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import { Link, Redirect  } from 'react-router-dom'
 import '../App.css'
 
 const UpdateCat = props => {
+  const [success, setSuccess] = useState(false)
   const [form, setForm] = useState({
       name: props.name,
       age: props.age,
@@ -13,15 +14,26 @@ const UpdateCat = props => {
 
   const handleChange = e => {
     setForm({
-        //take all the existing form data and,...
         ...form,
-        //...add new data to the end as it is typed
         [e.target.name]: e.target.value
+    })
+  }
+
+  const updateCat = (catInfo) => {
+    return fetch(`http://localhost:3000/cats/${props.id}`, {
+      body: JSON.stringify(catInfo),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "PATCH"
+    }).then(() => {
+      setSuccess(true)
     })
   }
 
   const handleSubmit = e => {
     e.preventDefault()
+    updateCat(form)
     console.log(form)
   }
 
@@ -56,20 +68,23 @@ const UpdateCat = props => {
               value={ form.enjoys }
               onChange={ handleChange }
             />
-          <Label htmlFor="avatar" id="avatar">Image URL</Label>
+          <Label htmlFor="image_path" id="image_path">Image URL</Label>
             <Input
               type="text"
-              name="avatar"
+              name="image_path"
               value={ form.image_path }
               onChange={ handleChange }
             />
         </FormGroup>
 
-        <Button
-          style={{backgroundColor:"white",border:"1px solid rgb(237,53,53)", color:"rgb(237,53,53)",fontWeight: "500", marginBottom: "80px"}}
-          onClick = { handleSubmit }
-          id="submit"
-        >Update Profile</Button>
+        <Link to={`/cats/${props.id}`} >
+          <Button
+            style={{backgroundColor:"white",border:"1px solid rgb(237,53,53)", color:"rgb(237,53,53)",fontWeight: "500", marginBottom: "80px"}}
+            onClick = { handleSubmit }
+            id="submit"
+          >Update Profile</Button>
+          { success && <Redirect to={`/cats/${props.id}`}/> }
+        </Link>
       </Form>
     </>
   )

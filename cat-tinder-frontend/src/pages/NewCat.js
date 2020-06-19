@@ -6,6 +6,7 @@ import '../App.css'
 const NewCat = props => {
   const [cats, setCats] = useState([])
   const [success, setSuccess] = useState(false)
+  const [error, setError] = useState(false)
   const [form, setForm] = useState({
       name: '',
       age: '',
@@ -14,12 +15,18 @@ const NewCat = props => {
   })
 
   const pushCats = (newCat) => {
-    return fetch("http://localhost:3000/cats", {
+    fetch("http://localhost:3000/cats", {
       body: JSON.stringify(newCat),
       headers: {
         "Content-Type": "application/json"
       },
       method: "POST"
+    })
+    .then((response) => {
+    if (response.ok) setSuccess(true);
+    else if (!response.ok) {
+      setError(true)
+    } else return response.json();
     })
   }
 
@@ -37,7 +44,6 @@ const NewCat = props => {
     console.log(form)
     setCats(cats => [...cats,form])
     pushCats(form)
-    setSuccess(true)
   }
 
   return(
@@ -48,6 +54,7 @@ const NewCat = props => {
         <a style={{textDecoration:"none"}} href="/messages"><Button style={{backgroundColor: "rgb(237,53,53)", border:"0px", fontWeight: "500", fontSize: "25px", padding: "5px", display:"flex", alignItems: "center", justifyContent: "center", width:"36px", height:"36px", margin:"0 0 0 20px"}}><span role="img" aria-label="message-cat">💌</span></Button></a>
       </div>
       <h4 className="subtitle">Sign up to be part of the hotties.</h4>
+      {error && <h4 className="error-message">Please fill out the form correctly.</h4>}
       <Form className="form-wrapper">
         <FormGroup>
           <Label htmlFor="name" id="name">Name</Label>
@@ -87,7 +94,7 @@ const NewCat = props => {
             id="submit"
             name="submit"
           >Create Profile</Button>
-          { success && <Redirect to="./cats"/> }
+          { success && <Redirect to="/cats"/> }
         </Link>
       </Form>
     </>
