@@ -39,11 +39,11 @@ const App = props => {
       <Header />
       <Switch>
         <Route exact path="/" render={(props) => <Home cats={ newCats } /> } />
-        <Route path="/cats" render={(props) => <CatIndex cats={ newCats } /> } />
+        <Route path="/cats" render={(props) => <CatIndex /> } />
         {
           newCats.map((cat,index) => {
             return(
-              <Route exact path={`/${cat.id}`} render={(props) => <CatProfile name={cat.name} enjoys={cat.enjoys} age={cat.age} image={cat.image_path} index={cat.index} id={cat.id}/> } />
+              <Route exact path={`/${cat.id}`} render={(props) => <CatProfile newCats={newCats} name={cat.name} enjoys={cat.enjoys} age={cat.age} image={cat.image_path} index={cat.index} id={cat.id} /> } />
             )
           })
         }

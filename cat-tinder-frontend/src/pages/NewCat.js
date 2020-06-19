@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
+import { Link, Redirect } from 'react-router-dom'
 import '../App.css'
 
 const NewCat = props => {
+  const [cats, setCats] = useState([])
+  const [success, setSuccess] = useState(false)
   const [form, setForm] = useState({
       name: '',
       age: '',
       enjoys: '',
-      avatar: ''
+      image_path: ''
   })
+
+  const pushCats = (newCat) => {
+    return fetch("http://localhost:3000/cats", {
+      body: JSON.stringify(newCat),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    })
+  }
 
   const handleChange = e => {
     setForm({
@@ -21,13 +34,10 @@ const NewCat = props => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    setForm({
-      name: '',
-      age: '',
-      enjoys: '',
-      avatar: ''
-    })
     console.log(form)
+    setCats(cats => [...cats,form])
+    pushCats(form)
+    setSuccess(true)
   }
 
   return(
@@ -61,28 +71,24 @@ const NewCat = props => {
               value={ form.enjoys }
               onChange={ handleChange }
             />
+          <Label htmlFor="image_path" id="image_path">Image URL</Label>
+            <Input
+              type="text"
+              name="image_path"
+              value={ form.image_path }
+              onChange={ handleChange }
+            />
         </FormGroup>
 
-        <FormGroup>
-          <Label htmlFor="avatar">Photo</Label>
-          <Input
-            id="avatar"
-            type="file"
-            name="avatar"
-            accept="image/png, image/jpeg"
-            value= { form.avatar }
-            onChange={ handleChange }
-          />
-          <FormText color="muted">
-            Add a photo of your hottie face!
-          </FormText>
-        </FormGroup>
-
-        <Button
-          style={{backgroundColor:"white",border:"1px solid rgb(237,53,53)", color:"rgb(237,53,53)",fontWeight: "500", marginBottom: "80px"}}
-          onClick = { handleSubmit }
-          id="submit"
-        >Create Profile</Button>
+        <Link to="/cats">
+          <Button
+            style={{backgroundColor:"white",border:"1px solid rgb(237,53,53)", color:"rgb(237,53,53)",fontWeight: "500", marginBottom: "80px"}}
+            onClick = { handleSubmit }
+            id="submit"
+            name="submit"
+          >Create Profile</Button>
+          { success && <Redirect to="./cats"/> }
+        </Link>
       </Form>
     </>
   )

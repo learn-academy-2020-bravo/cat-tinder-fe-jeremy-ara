@@ -40,10 +40,11 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 .cat-wrapper {
-  padding: 0 40px 40px 40px;
+  margin: 20px;
 }
 
 .form-wrapper {
@@ -101,6 +102,7 @@ footer {
 
 .header-buttons {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }

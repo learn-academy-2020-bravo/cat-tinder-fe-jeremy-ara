@@ -8,7 +8,7 @@ const UpdateCat = props => {
       name: props.name,
       age: props.age,
       enjoys: props.enjoys,
-      avatar: ''
+      image_path: props.image
   })
 
   const handleChange = e => {
@@ -56,19 +56,13 @@ const UpdateCat = props => {
               value={ form.enjoys }
               onChange={ handleChange }
             />
-        </FormGroup>
-
-        <FormGroup>
-          <Label htmlFor="avatar" id="avatar">Photo</Label>
-          <Input
-            type="file"
-            name="avatar"
-            value= { form.avatar }
-            onChange={ handleChange }
-          />
-          <FormText color="muted">
-            Add a photo of your hottie face!
-          </FormText>
+          <Label htmlFor="avatar" id="avatar">Image URL</Label>
+            <Input
+              type="text"
+              name="avatar"
+              value={ form.image_path }
+              onChange={ handleChange }
+            />
         </FormGroup>
 
         <Button

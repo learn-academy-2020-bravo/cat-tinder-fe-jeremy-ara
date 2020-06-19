@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ListGroup, ListGroupItemHeading, ListGroupItemText, Button } from 'reactstrap'
+import { Link, Redirect } from 'react-router-dom'
 import '../App.css'
 
 const CatProfile = props => {
-  const handleDelete = e => {
+  const [success, setSuccess] = useState(false)
 
+  const deleteCat = id => {
+    return fetch(`http://localhost:3000/cats/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+  }
+
+  const handleDelete = e => {
+    e.preventDefault()
+    deleteCat(props.id)
+    setSuccess(true)
   }
 
   return(
@@ -22,8 +36,12 @@ const CatProfile = props => {
             <ListGroupItemText>{ props.enjoys } </ListGroupItemText>
           </div>
           <div className="like-buttons-wrapper">
-            <a href={`/${props.id}/edit`}><Button style={{margin:"0px 10px",backgroundColor:"white",border:"1px solid rgb(237,53,53)", color:"rgb(237,53,53)",fontWeight: "500"}}>Edit Profile</Button>
-            <Button style={{backgroundColor:"white",border:"1px solid rgb(237,53,53)", color:"rgb(237,53,53)",fontWeight: "500"}} onClick={handleDelete}>Delete Cat</Button></a>
+            <a href={`/${props.id}/edit`}><Button style={{margin:"0px 10px",backgroundColor:"white",border:"1px solid rgb(237,53,53)", color:"rgb(237,53,53)",fontWeight: "500"}}>Edit Profile</Button></a>
+
+            <Link to="/cats">
+              <Button type="submit" style={{backgroundColor:"white",border:"1px solid rgb(237,53,53)", color:"rgb(237,53,53)",fontWeight: "500"}} onClick={handleDelete}>Delete Cat</Button>
+              { success && <Redirect to="./cats"/> }
+            </Link>
           </div>
         </ListGroup>
       </div>
