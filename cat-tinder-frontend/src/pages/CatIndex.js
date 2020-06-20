@@ -15,13 +15,18 @@ const CatIndex = props => {
     try {
       //GET data from the backend
       let response = await fetch("http://localhost:3000/cats")
-      let data = await response.json();
-      //all good?
+      let data = await response.json()
+      let sortedData = data.sort((a,b) => {
+        if (a.id === b.id) return 0
+        else if (a.id > b.id) return 1
+        else return -1
+      })
+       //all good?
       if(response.status === 200) {
         //check the console to make sure we have all the cats
-        console.log("data", data)
+        console.log("sortedData", sortedData)
         //populate the newCats state array with data
-        setNewCats(data)
+        setNewCats(sortedData)
       }
     } catch (err) {
         console.log(err)
@@ -36,13 +41,13 @@ const CatIndex = props => {
         <a style={{textDecoration:"none"}} href="/messages"><Button style={{background: "rgb(237,53,53)", border:"0px", fontWeight: "500", fontSize: "25px", padding: "5px", display:"flex", alignItems: "center", justifyContent: "center", width:"36px", height:"36px", margin:"0 0 0 20px"}}><span role="img" aria-label="message-cat">💌</span></Button></a>
       </div>
       <div className="cat-index-wrapper">
-        <h3>All the single cats in your area</h3><br/>
+        <h3 className="cat-index-title">All the single cats in your area</h3><br/>
         <div className="cats-display-wrapper">
 
         {newCats.map((cat,index) => {
           return(
             <ListGroup key={index} className="cat-wrapper">
-              <a href={`/${cat.id}`}><img style={{width: "300px"}} src={cat.image_path} /></a>
+              <a href={`/cats/${cat.id}`}><img style={{width: "300px"}} src={cat.image_path} /></a>
               <div className="cat-description-wrapper">
                 <h4 className="cat-name"><span style={{fontWeight: "bold"}}>{ cat.name }</span>, <span style={{fontWeight:"300"}}>{ cat.age }</span></h4>
                 <ListGroupItemText>{ cat.enjoys } </ListGroupItemText>

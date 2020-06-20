@@ -184,6 +184,10 @@ footer {
   font-size: 16px;
 }
 
+.cat-index-title {
+  margin: 0;
+}
+
 @media only screen and (min-width: 600px) {
   .form-group {
     width: 480px;

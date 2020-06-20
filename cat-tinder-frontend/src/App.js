@@ -21,13 +21,18 @@ const App = props => {
     try {
       //GET data from the backend
       let response = await fetch("http://localhost:3000/cats")
-      let data = await response.json();
+      let data = await response.json()
+      let sortedData = data.sort((a,b) => {
+        if (a.id === b.id) return 0
+        else if (a.id > b.id) return 1
+        else return -1
+      })
       //all good?
       if(response.status === 200) {
         //check the console to make sure we have all the cats
-        console.log("data", data)
+        console.log("sortedData", sortedData)
         //populate the newCats state array with data
-        setNewCats(data)
+        setNewCats(sortedData)
       }
     } catch (err) {
         console.log(err)
@@ -39,23 +44,23 @@ const App = props => {
       <Header />
       <Switch>
         <Route exact path="/" render={(props) => <Home cats={ newCats } /> } />
-        <Route path="/cats" render={(props) => <CatIndex /> } />
+        <Route exact path="/cats" render={(props) => <CatIndex /> } />
         {
-          newCats.map((cat,index) => {
+          newCats.map(cat => {
             return(
-              <Route exact path={`/${cat.id}`} render={(props) => <CatProfile newCats={newCats} name={cat.name} enjoys={cat.enjoys} age={cat.age} image={cat.image_path} index={cat.index} id={cat.id} /> } />
+              <Route exact path={`/cats/${cat.id}`} render={(props) => <CatProfile id={cat.id} /> } />
             )
           })
         }
         {
-          newCats.map((cat,index) => {
+          newCats.map(cat => {
             return(
-              <Route path={`/${cat.id}/edit`} render={(props) => <UpdateCat name={cat.name} enjoys={cat.enjoys} age={cat.age} image={cat.image_path} index={cat.index} id={cat.id}/> } />
+              <Route exact path={`/cats/${cat.id}/edit`} render={(props) => <UpdateCat cat={cat}/> } />
             )
           })
         }
-        <Route path="/messages" render={(props) => <Messages cats={ newCats } /> } />
-        <Route path="/new" render={(props) => <NewCat /> } />
+        <Route exact path="/messages" render={(props) => <Messages cats={ newCats } /> } />
+        <Route exact path="/new" render={(props) => <NewCat /> } />
       </Switch>
       <footer>Meowtch Maker by Ara and Jeremy. Meow'd with love.</footer>
     </Router>
