@@ -6,26 +6,23 @@ import '../App.css'
 const CatIndex = props => {
     //Create an empty array to hold all the cats
   const [newCats, setNewCats] = useState([])
-  //useEffect hook lets us GET all cats from the database when the component loads
-  //the empty array after the comma means that it will get triggered automatically only once
+
   useEffect(() =>{
-    grabCats()},[])
+    grabCats()
+    },[])
 
   async function grabCats () {
     try {
-      //GET data from the backend
       let response = await fetch("http://localhost:3000/cats")
       let data = await response.json()
+      // Sort the data numerically by id number
       let sortedData = data.sort((a,b) => {
         if (a.id === b.id) return 0
         else if (a.id > b.id) return 1
         else return -1
       })
-       //all good?
       if(response.status === 200) {
-        //check the console to make sure we have all the cats
         console.log("sortedData", sortedData)
-        //populate the newCats state array with data
         setNewCats(sortedData)
       }
     } catch (err) {
@@ -44,6 +41,7 @@ const CatIndex = props => {
         <h3 className="cat-index-title">All the single cats in your area</h3><br/>
         <div className="cats-display-wrapper">
 
+
         {newCats.map((cat,index) => {
           return(
             <ListGroup key={index} className="cat-wrapper">
@@ -54,11 +52,11 @@ const CatIndex = props => {
               </div>
 
               <div className="like-buttons-wrapper">
-                <Button style={{backgroundColor: "#E0E0E0", border:"0px", borderRadius: "50%", fontWeight: "bold", fontSize: "30px", padding: "5px", height: "40px", display:"flex", alignItems: "center", justifyContent: "center", width:"40px", height:"40px", margin:"5px"}}><span role="img" aria-label="like-cat">😽</span></Button>
+                <div className="like-button" id={`like-button-${cat.id}`}><span role="img" aria-label="like-cat">😽</span></div>
 
-                <Button style={{backgroundColor: "#E0E0E0", border:"0px", borderRadius: "50%", fontWeight: "bold", fontSize: "30px", padding: "5px", height: "40px", display:"flex", alignItems: "center", justifyContent: "center", width:"40px", height:"40px", margin:"5px"}}><span role="img" aria-label="superlike-cat">😻</span></Button>
+                <div className="like-button" id={`superlike-button-${cat.id}`}><span role="img" aria-label="superlike-cat">😻</span></div>
 
-                <Button style={{backgroundColor: "#E0E0E0", border:"0px", borderRadius: "50%", fontWeight: "bold", fontSize: "20px", padding: "5px", height: "40px", display:"flex", alignItems: "center", justifyContent: "center", width:"40px", height:"40px", margin:"5px"}}><span role="img" aria-label="dislike-cat">❌</span></Button>
+                <div className="dislike-button" id={`dislike-button-${cat.id}`}><span role="img" aria-label="dislike-cat">❌</span></div>
               </div>
             </ListGroup>
           )

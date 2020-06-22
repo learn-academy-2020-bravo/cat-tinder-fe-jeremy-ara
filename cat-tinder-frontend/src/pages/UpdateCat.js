@@ -68,7 +68,7 @@ const UpdateCat = props => {
               value={ form.age }
               onChange={ handleChange }
             />
-          <Label htmlFor="enjoys" id="enjoys">What do you like to do?</Label>
+          <Label htmlFor="enjoys" id="enjoys">What do you like to do? (at least 10 characters)</Label>
             <Input
               type="text"
               name="enjoys"
